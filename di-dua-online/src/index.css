@@ -1,0 +1,319 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply antialiased bg-[#07040d] text-white;
+    font-family: 'Be Vietnam Pro', sans-serif;
+  }
+}
+
+.neon-title {
+  color: #fff;
+  text-shadow:
+    0 0 4px #fff,
+    0 0 10px #ff2d95,
+    0 0 22px #ff2d95,
+    0 0 40px #9b4dff;
+  animation: neon-flicker 4s infinite;
+}
+
+@keyframes neon-flicker {
+  0%, 92%, 96%, 100% { opacity: 1; }
+  94% { opacity: 0.7; }
+}
+
+/* Name tags over the 3D runners (positioned by RaceScene) */
+.race-tag {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  max-width: 84px;
+  padding: 1px 5px 1px 1px;
+  border-radius: 999px;
+  background: rgba(10, 10, 30, 0.72);
+  color: #fff;
+  font-size: 8px;
+  font-weight: 800;
+  line-height: 11px;
+  white-space: nowrap;
+}
+
+.race-tag b {
+  min-width: 11px;
+  height: 11px;
+  border-radius: 999px;
+  background: #0a84ff;
+  text-align: center;
+  font-size: 7.5px;
+}
+
+.race-tag img {
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+  object-fit: cover;
+}
+
+.race-tag span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.race-tag--bot {
+  opacity: 0.7;
+}
+
+.race-tag--first b {
+  background: #ffcc00;
+  color: #3a2a00;
+}
+
+.race-tag--flying {
+  background: linear-gradient(90deg, #ff9f0a, #ff2d95);
+  box-shadow: 0 0 10px rgba(255, 210, 60, 0.9);
+  font-size: 9px;
+}
+
+.race-title {
+  color: #fff;
+  -webkit-text-stroke: 1px #1b2a6b;
+  text-shadow: 0 3px 0 #1b2a6b, 0 0 14px rgba(255, 159, 10, 0.9);
+}
+
+.countdown-number {
+  -webkit-text-stroke: 3px #1b2a6b;
+  text-shadow: 0 6px 0 #1b2a6b, 0 0 30px rgba(255, 214, 10, 0.9);
+  animation: countdown-pop 1s ease-out forwards;
+}
+
+@keyframes countdown-pop {
+  0% { transform: scale(2.2); opacity: 0; }
+  20% { transform: scale(1); opacity: 1; }
+  80% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0.6); opacity: 0; }
+}
+
+.podium-in {
+  animation: podium-in 0.5s cubic-bezier(0.2, 1.4, 0.4, 1);
+}
+
+@keyframes podium-in {
+  from { transform: scale(0.6); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+.gift-toast {
+  animation: toast-in 0.35s cubic-bezier(0.2, 1.4, 0.4, 1);
+}
+
+@keyframes toast-in {
+  from { transform: translateX(120%) scale(0.8); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+.keyword-hint {
+  animation: hint-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes hint-pulse {
+  0%, 100% { box-shadow: 0 0 6px rgba(103, 232, 249, 0.3); }
+  50% { box-shadow: 0 0 16px rgba(103, 232, 249, 0.75); }
+}
+
+.party-banner {
+  background: linear-gradient(90deg, #ffe14d, #ff2d95, #2dd4ff, #ffe14d);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: party-slide 1.2s linear infinite;
+}
+
+@keyframes party-slide {
+  to { background-position: 300% 0; }
+}
+
+.drop-flash {
+  animation: drop-flash 1.3s ease-out forwards;
+}
+
+@keyframes drop-flash {
+  0% { background: rgba(255, 255, 255, 0.85); }
+  25% { background: rgba(255, 45, 149, 0.25); }
+  100% { background: rgba(255, 255, 255, 0); }
+}
+
+.drop-text {
+  text-shadow: 0 0 12px #ff2d95, 0 0 30px #2dd4ff;
+  animation: drop-text 1.3s ease-out forwards;
+}
+
+@keyframes drop-text {
+  0% { transform: scale(2.2); opacity: 0; }
+  20% { transform: scale(1); opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: scale(1.1); opacity: 0; }
+}
+
+/* Heart taps */
+.floating-heart {
+  position: absolute;
+  bottom: -30px;
+  line-height: 1;
+  text-shadow: 0 0 8px currentColor, 0 0 18px #ff2d95;
+  animation-name: heart-float;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes heart-float {
+  0% { transform: translate(0, 0) scale(0.4); opacity: 0; }
+  10% { opacity: 1; transform: translate(0, -40px) scale(1.15); }
+  30% { opacity: 0.45; }
+  45% { opacity: 1; }
+  60% { opacity: 0.5; }
+  75% { opacity: 1; }
+  100% { transform: translate(var(--drift, 0), -820px) scale(0.9); opacity: 0; }
+}
+
+.heart-edge-flash {
+  position: absolute;
+  inset: 0;
+  animation: heart-edge 0.55s ease-out forwards;
+}
+
+@keyframes heart-edge {
+  0% { box-shadow: inset 0 0 70px 14px rgba(255, 45, 149, 0.75); }
+  100% { box-shadow: inset 0 0 70px 14px rgba(255, 45, 149, 0); }
+}
+
+.heart-name {
+  animation: heart-name 1.8s ease-out forwards;
+}
+
+@keyframes heart-name {
+  0% { transform: translate(-50%, 12px) scale(0.8); opacity: 0; }
+  12% { transform: translate(-50%, 0) scale(1.08); opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translate(-50%, -10px) scale(1); opacity: 0; }
+}
+
+/* Gift banner: big, blinking, then fades out before the toast list drops it */
+.gift-banner {
+  animation: gift-banner-life 4.6s ease-out forwards;
+}
+
+@keyframes gift-banner-life {
+  0% { transform: scale(0.3); opacity: 0; }
+  8% { transform: scale(1.18); opacity: 1; }
+  14% { transform: scale(1); }
+  86% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-14px) scale(1); }
+}
+
+.gift-banner-box {
+  box-shadow: 0 0 22px rgba(255, 255, 255, 0.6), 0 0 46px rgba(255, 45, 149, 0.7);
+  animation: gift-blink 0.42s steps(2, jump-none) infinite;
+}
+
+.gift-banner-text {
+  color: #fff;
+  -webkit-text-stroke: 1.5px rgba(40, 0, 60, 0.9);
+  text-shadow: 0 0 10px #ffe14d, 0 0 24px #ff2d95, 0 0 44px #2dd4ff;
+  animation: gift-blink 0.42s steps(2, jump-none) infinite, gift-pump 0.84s ease-in-out infinite;
+}
+
+@keyframes gift-blink {
+  0% { filter: brightness(1.55) saturate(1.3); }
+  100% { filter: brightness(0.9); }
+}
+
+@keyframes gift-pump {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.gift-edge-flash {
+  position: absolute;
+  inset: 0;
+  animation: gift-edge 0.5s ease-in-out 5 forwards;
+}
+
+@keyframes gift-edge {
+  0%, 100% { box-shadow: inset 0 0 0 0 transparent; }
+  45% { box-shadow: inset 0 0 90px 22px var(--flash, rgba(255, 210, 60, 0.8)); }
+}
+
+/* Lane number chip in the standings (what viewers type to cheer) */
+.lane-chip {
+  min-width: 12px;
+  height: 12px;
+  border-radius: 4px;
+  background: #0a84ff;
+  color: #fff;
+  font-size: 8px;
+  font-weight: 900;
+  line-height: 12px;
+  text-align: center;
+}
+
+.race-tag--turbo {
+  background: linear-gradient(90deg, #ff3b00, #ffb000);
+  box-shadow: 0 0 10px rgba(255, 120, 0, 0.9);
+}
+
+.race-tag--crown span::before {
+  content: '👑';
+  margin-right: 1px;
+}
+
+/* Gift that lifts a runner: two quick blue-white lightning flashes over the whole screen */
+.lightning-flash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.95), rgba(140, 200, 255, 0.6) 45%, rgba(40, 80, 200, 0) 80%);
+  animation: lightning 0.6s linear forwards;
+}
+
+@keyframes lightning {
+  0% { opacity: 0; }
+  8% { opacity: 1; }
+  18% { opacity: 0.1; }
+  30% { opacity: 0.9; }
+  45% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* Slow-motion finish: dark film edges and a pulsing title */
+.photo-finish {
+  box-shadow: inset 0 0 90px 30px rgba(0, 0, 0, 0.75);
+  animation: photo-in 0.3s ease-out;
+}
+
+.photo-finish-text {
+  animation: photo-pulse 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes photo-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes photo-pulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.12); }
+}
+
+/* Photo finish: the two leaders' tags blink red with the outline around their bodies */
+.race-tag--duel {
+  background: #e3000f;
+  box-shadow: 0 0 12px rgba(255, 30, 30, 0.95);
+  animation: duel-blink 0.2s steps(1) infinite;
+}
+
+@keyframes duel-blink {
+  0% { background: #e3000f; }
+  50% { background: #ffcc00; color: #3a0000; }
+}
